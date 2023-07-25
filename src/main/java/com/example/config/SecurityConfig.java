@@ -29,7 +29,11 @@ public class SecurityConfig {
                 requestMatchers("/admin/displayChurch").authenticated().
                 requestMatchers("/admin/saveChurch").authenticated().
                 requestMatchers("/admin/displayUsers/**").authenticated().
-                requestMatchers("/admin/removeChurch").authenticated().
+                requestMatchers("/admin/displayGrades/**").authenticated().
+                requestMatchers("/admin/displayStudents/**").authenticated().
+                requestMatchers("/admin/enrollStudent/**").authenticated().
+                requestMatchers("/admin/removeEnrollment/**").authenticated().
+                requestMatchers("/admin/saveGrades").authenticated().
                 requestMatchers("/assets/**").permitAll().
                 requestMatchers("/schedule/**").permitAll().
                 requestMatchers("/idea").permitAll().

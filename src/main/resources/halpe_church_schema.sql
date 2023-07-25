@@ -78,6 +78,24 @@ CREATE TABLE IF NOT EXISTS 'church' (
 alter table person add column church_id int null;
 alter table person add constraint fk_church_id foreign key (church_id) references church (church_id);
 
+CREATE TABLE IF NOT EXISTS `grade` (
+    `grade_id` int NOT NULL AUTO_INCREMENT,
+    `name` varchar(30) NOT NULL,
+    `created_date` TIMESTAMP NOT NULL,
+    `created_by` varchar(50) NOT NULL,
+    `modified_by` varchar(50) NULL,
+    `modified_date` TIMESTAMP NULL,
+    PRIMARY KEY (grade_id)
+);
+
+CREATE TABLE IF NOT EXISTS `students_grade` (
+    `grade_id` int NOT NULL,
+    `person_id` int NOT NULL,
+    PRIMARY KEY (grade_id,person_id)
+
+);
+alter table students_grade add constraint  fk_person_id foreign key (person_id) references person (person_id);
+alter table students_grade add constraint  fk_grade_id foreign key (grade_id) references grade (grade_id);
 
 
 
