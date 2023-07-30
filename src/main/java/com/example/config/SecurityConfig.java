@@ -24,6 +24,7 @@ public class SecurityConfig {
                 requestMatchers("/IdeaList").hasRole("ADMIN").
                 requestMatchers("/IdeaList/**").hasRole("ADMIN").
                 requestMatchers("/CloseIdea/**").hasRole("ADMIN").
+                requestMatchers("/displayIdea/**").hasRole("ADMIN").
                 requestMatchers("/profile").authenticated().
                 requestMatchers("/updateProfile").authenticated().
                 requestMatchers("/admin/displayChurch").authenticated().

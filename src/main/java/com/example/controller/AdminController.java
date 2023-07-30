@@ -81,7 +81,7 @@ public class AdminController {
 
     @GetMapping("/displayGrades")
     public ModelAndView displayGrade(Model model){
-        List<Grade> grades = gradeRepository.findAll();
+        List<Grade> grades = gradeRepository.findByOrderByNameDesc();
         ModelAndView modelAndView = new ModelAndView("grade.html");
         modelAndView.addObject("gradeList", grades);
         modelAndView.addObject("grade", new Grade());

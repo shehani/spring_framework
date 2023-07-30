@@ -163,7 +163,7 @@
       </div>
       <div sec:authorize="hasRole('ROLE_ADMIN')">
           <div class="col-4 text-center">
-            <a class="blog-header-logo text-body-emphasis" th:href="@{/IdeaList}">Idea List</a>
+            <a class="blog-header-logo text-body-emphasis" th:href="@{/displayIdea/page/1?sortField=firstName&sortDir=desc}">Idea List</a>
           </div>
         <div class="col-4 text-center">
           <a class="blog-header-logo text-body-emphasis" th:href="@{/admin/displayChurch}">Church List</a>

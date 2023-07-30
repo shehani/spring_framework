@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Mass schedule</title>
-  <link href="../assets/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
   <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
@@ -92,12 +92,12 @@
   <table class="table">
     <thead>
     <tr>
-      <th>First Name</th>
-      <th>Last Name</th>
+      <th><a class="page-link" th:href="@{'/displayIdea/page/' +${currentPage} + '?sortField=FirstName&sortDir=' +${reverseSortDir}}">First Name</a></th>
+      <th><a class="page-link" th:href="@{'/displayIdea/page/' +${currentPage} + '?sortField=lastName&sortDir=' +${reverseSortDir}}">Last Name</a></th>
       <th>Address</th>
       <th>Address 2</th>
       <th>Opinion</th>
-      <th>Created Date</th>
+      <th><a class="page-link" th:href="@{'/displayIdea/page/' +${currentPage} + '?sortField=createdDate&sortDir=' +${reverseSortDir}}">Created Date</th>
     </tr>
     </thead>
     <tbody>
@@ -123,6 +123,26 @@
 
     </tbody>
   </table>
+<!-- Pagination -->
+  <nav aria-label="Page navigation example">
+    <ul class="pagination">
+      <li class="page-item"><a class="page-link" th:if="${currentPage > 1}" th:href="@{'/displayIdea/page/' +${currentPage -1} + '?sortField=' +${sortField} + '&sortDir=' +${sortDir}}">Previous</a>
+      <a class="page-link" th:unless="${currentPage > 1}" aria-disabled="true">Previous</a></li>
+
+      <span th:each="i : ${#numbers.sequence(1,totalPages)}">
+      <li class="page-item">
+        <a class="page-link" th:if="${currentPage != i}" th:href="@{'/displayIdea/page/'+${i}+'?sortField='+${sortField}+'&sortDir=' +${sortDir}}">[[${i}]]</a>
+        <a class="page-link" th:unless="${currentPage != i}">[[${i}]]</a>
+      </li>
+      </span>
+
+      <li class="page-item">
+        <a class="page-link" th:if="${currentPage <totalPages}" th:href="@{'/displayIdea/page/' +${currentPage +1} + '?sortField=' +${sortField} + '&sortDir=' +${sortDir}}">Next</a>
+        <a class="page-link" th:unless="${currentPage < totalPages}" aria-disabled="true">Next</a>
+      </li>
+    </ul>
+  </nav>
+
 
 </article>
 

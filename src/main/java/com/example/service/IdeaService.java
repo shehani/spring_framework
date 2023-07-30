@@ -5,6 +5,10 @@ import com.example.repository.IdeaRepository;
 import com.example.util.Constant;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.annotation.RequestScope;
 
@@ -33,13 +37,14 @@ public class IdeaService {
     }
 
     /**
-     * This method is supporting for get All Ideas posted by users
+     * This method is supporting for getting Ideas page posted by users
      * @return Idea List
      */
-    public List<Idea> getAllIdea(){
-        Iterable<Idea> iterableIdea = ideaRepository.findByStatus(Constant.openStatus);
-        List<Idea> ideaList = StreamSupport.stream(iterableIdea.spliterator(),false).collect(Collectors.toList());
-        return ideaList;
+    public Page<Idea> getIdeasWithOpenStatus(int pageNum , String sortField, String sortDir){
+        int pageSize =2;
+        Pageable pageable = PageRequest.of(pageNum-1,pageSize,sortDir.equals("asc") ? Sort.by(sortField).ascending() : Sort.by(sortField).descending());
+        Page<Idea> ideaPage = ideaRepository.findByStatus(Constant.openStatus,pageable);
+        return ideaPage;
     }
 
     /**
