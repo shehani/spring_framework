@@ -37,7 +37,7 @@ public class AdminController {
     @GetMapping(value = "/displayChurch")
     public ModelAndView displayChurch(Model model){
         ModelAndView modelAndView = new ModelAndView("church.html");
-        List<Church> churchList = adminRepository.findAll();
+        List<Church> churchList = adminRepository.findAllChurch();
         Church church = new Church();
         modelAndView.addObject("church",church);
         modelAndView.addObject("churchList",churchList);

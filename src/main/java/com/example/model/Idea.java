@@ -10,6 +10,19 @@ import org.hibernate.annotations.GenericGenerator;
 
 @Data
 @Entity
+@SqlResultSetMappings({
+        @SqlResultSetMapping(name = "SqlResultSetMapping.count" , columns = @ColumnResult(name = "cnt"))
+})
+@NamedQueries({
+        @NamedQuery(name = "Idea.findStatus", query = "select i from Idea i where i.status = :status"),
+        @NamedQuery(name = "Idea.updateIdeaStatus" , query = "update Idea i set i.status = :status where i.id = :id")
+})
+@NamedNativeQueries({
+        @NamedNativeQuery(name = "Idea.findStatusNative", query = "select * from idea i where i.status = :status", resultClass = Idea.class),
+        @NamedNativeQuery(name = "Idea.findStatusNative.count", query = "select count(*) as cnt from idea i where i.status = :status" , resultSetMapping = "SqlResultSetMapping.count"),
+        @NamedNativeQuery(name = "Idea.updateIdeaStatusNative", query = "update idea i set i.status = :status where i.id = :id")
+
+})
 public class Idea extends BaseEntity {
 
     @Id

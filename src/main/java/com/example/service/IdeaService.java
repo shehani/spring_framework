@@ -43,7 +43,7 @@ public class IdeaService {
     public Page<Idea> getIdeasWithOpenStatus(int pageNum , String sortField, String sortDir){
         int pageSize =2;
         Pageable pageable = PageRequest.of(pageNum-1,pageSize,sortDir.equals("asc") ? Sort.by(sortField).ascending() : Sort.by(sortField).descending());
-        Page<Idea> ideaPage = ideaRepository.findByStatus(Constant.openStatus,pageable);
+        Page<Idea> ideaPage = ideaRepository.findStatus(Constant.openStatus,pageable);
         return ideaPage;
     }
 
@@ -63,16 +63,19 @@ public class IdeaService {
      * @return
      */
     public boolean closeIdea(int id,String updatedBy){
-        boolean isUpdated = false;
-        Optional<Idea> existingIdea = ideaRepository.findById(id);
-        existingIdea.ifPresent(idea1 -> {
-            idea1.setStatus(Constant.closeStatus);
 
-        });
-        Idea updatedIdea = ideaRepository.save(existingIdea.get());
-        if(updatedIdea!=null && updatedIdea.getId()>0){
-            isUpdated = true;
+        int isUpdated = 0;
+//        Optional<Idea> existingIdea = ideaRepository.findById(id);
+//        existingIdea.ifPresent(idea1 -> {
+//            idea1.setStatus(Constant.closeStatus);
+//
+//        });
+//        Idea updatedIdea = ideaRepository.save(existingIdea.get());
+        isUpdated = ideaRepository.updateIdeaStatus(Constant.closeStatus , id);
+        if(isUpdated == 1){
+            return true;
+        }else {
+            return false;
         }
-        return isUpdated;
     }
 }
