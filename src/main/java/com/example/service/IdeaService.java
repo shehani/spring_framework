@@ -43,7 +43,7 @@ public class IdeaService {
     public Page<Idea> getIdeasWithOpenStatus(int pageNum , String sortField, String sortDir){
         int pageSize =2;
         Pageable pageable = PageRequest.of(pageNum-1,pageSize,sortDir.equals("asc") ? Sort.by(sortField).ascending() : Sort.by(sortField).descending());
-        Page<Idea> ideaPage = ideaRepository.findStatus(Constant.openStatus,pageable);
+        Page<Idea> ideaPage = ideaRepository.findByStatus(Constant.openStatus,pageable);
         return ideaPage;
     }
 

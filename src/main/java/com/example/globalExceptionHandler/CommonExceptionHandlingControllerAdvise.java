@@ -1,6 +1,7 @@
 package com.example.globalExceptionHandler;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.ModelAndView;
@@ -10,7 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
  * to display proper message to user
  * via a nice UI
  */
-@ControllerAdvice
+@ControllerAdvice(annotations = Controller.class)
 @Slf4j
 public class CommonExceptionHandlingControllerAdvise {
 

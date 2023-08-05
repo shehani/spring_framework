@@ -6,9 +6,6 @@ import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,7 +25,7 @@ public class IdeaController {
     private IdeaService ideaService;
 
     /**
-     * Initializing ideaService Feild
+     * Initializing ideaService Field
      * @param ideaService - Constructor level Autowired bean
      */
     @Autowired

@@ -18,7 +18,7 @@ public class SecurityConfig {
 
 
         http.
-                csrf().ignoringRequestMatchers("/postIdea").ignoringRequestMatchers("/public/**").ignoringRequestMatchers("/updateProfile").ignoringRequestMatchers("/admin/**").and().authorizeHttpRequests().
+                csrf().ignoringRequestMatchers("/postIdea").ignoringRequestMatchers("/public/**").ignoringRequestMatchers("/updateProfile").ignoringRequestMatchers("/admin/**").ignoringRequestMatchers("/api/**").and().authorizeHttpRequests().
                 requestMatchers("/public/**").permitAll().
                 requestMatchers("","/","/home").authenticated().
                 requestMatchers("/IdeaList").hasRole("ADMIN").
@@ -26,6 +26,7 @@ public class SecurityConfig {
                 requestMatchers("/CloseIdea/**").hasRole("ADMIN").
                 requestMatchers("/displayIdea/**").hasRole("ADMIN").
                 requestMatchers("/profile").authenticated().
+                requestMatchers("/api/**").authenticated().
                 requestMatchers("/updateProfile").authenticated().
                 requestMatchers("/admin/displayChurch").authenticated().
                 requestMatchers("/admin/saveChurch").authenticated().

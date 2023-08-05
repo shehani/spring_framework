@@ -1,5 +1,6 @@
 package com.example.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
@@ -48,6 +49,7 @@ public class Idea extends BaseEntity {
 
     @NotBlank(message = "Idea must not be blank")
     @Size(min=10,message = "Idea must be more descriptive")
+    @JsonProperty("idea")
     private String opinion;
 
     private String status;
