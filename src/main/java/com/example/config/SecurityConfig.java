@@ -3,11 +3,8 @@ package com.example.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
@@ -18,14 +15,14 @@ public class SecurityConfig {
 
 
         http.
-                csrf().ignoringRequestMatchers("/postIdea").ignoringRequestMatchers("/public/**").ignoringRequestMatchers("/updateProfile").ignoringRequestMatchers("/admin/**").ignoringRequestMatchers("/api/**").and().authorizeHttpRequests().
+                csrf().ignoringRequestMatchers("/postIdea").ignoringRequestMatchers("/public/**").ignoringRequestMatchers("/updateProfile").ignoringRequestMatchers("/admin/**").ignoringRequestMatchers("/api/**").ignoringRequestMatchers("/data-api/**").and().authorizeHttpRequests().
                 requestMatchers("/public/**").permitAll().
-                requestMatchers("","/","/home").authenticated().
+                requestMatchers("/home").authenticated().
                 requestMatchers("/IdeaList").hasRole("ADMIN").
                 requestMatchers("/IdeaList/**").hasRole("ADMIN").
                 requestMatchers("/CloseIdea/**").hasRole("ADMIN").
                 requestMatchers("/displayIdea/**").hasRole("ADMIN").
-                requestMatchers("/profile").authenticated().
+                requestMatchers("/details").authenticated().
                 requestMatchers("/api/**").authenticated().
                 requestMatchers("/updateProfile").authenticated().
                 requestMatchers("/admin/displayChurch").authenticated().
@@ -38,6 +35,7 @@ public class SecurityConfig {
                 requestMatchers("/admin/saveGrades").authenticated().
                 requestMatchers("/assets/**").permitAll().
                 requestMatchers("/schedule/**").permitAll().
+                requestMatchers("/data-api/**").authenticated().
                 requestMatchers("/idea").permitAll().
                 requestMatchers("/postIdea").permitAll().
                 requestMatchers("/login").permitAll().

@@ -2,6 +2,7 @@ package com.example.model;
 
 import com.example.annotation.FieldsValueMatch;
 import com.example.annotation.PasswordValidator;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -48,10 +49,13 @@ public class Person extends BaseEntity{
     @Email(message = "Please provide a valid confirm email address")
     private String email;
     @Transient
+    @JsonIgnore
     private String confirmedEmail;
     @PasswordValidator
+    @JsonIgnore
     private String password;
     @Transient
+    @JsonIgnore
     private String confirmedPassword;
 
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST,targetEntity = Role.class)
@@ -63,7 +67,7 @@ public class Person extends BaseEntity{
     private Address address;
     private String status;
 
-    @ManyToOne(fetch = FetchType.LAZY , optional = true)
+    @ManyToOne(fetch = FetchType.EAGER , optional = true)
     @JoinColumn(name = "church_id", referencedColumnName = "churchId" , nullable = true)
     private Church churchOb;
 

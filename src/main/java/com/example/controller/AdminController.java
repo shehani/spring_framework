@@ -69,7 +69,7 @@ public class AdminController {
     @GetMapping("/removeChurch")
     public String removeChurch(@RequestParam(value = "id") int id){
         Optional<Church> church = adminRepository.findById(id);
-        List<Person> personList = church.get().getPersons();
+        List<Person> personList = church.get().getPersonList();
         for(Person person : personList){
             person.setChurchOb(null);
             personRepository .save(person);

@@ -22,7 +22,7 @@ public class Church extends BaseEntity{
     private String name;
 
     @OneToMany(mappedBy = "churchOb" , fetch = FetchType.LAZY, cascade = CascadeType.PERSIST, targetEntity = Person.class)
-    private List<Person> persons;
+    private List<Person> personList;
 
 
 

@@ -16,14 +16,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-@Controller
+@Controller("profileControllerBean")
 @Slf4j
 public class ProfileController {
 
     @Autowired
     PersonRepository personRepository;
 
-    @GetMapping(value = "/profile")
+    @GetMapping(value = "/details")
     public ModelAndView displayProfile(HttpSession httpSession, @RequestParam(value = "updated" , required = false) String updated){
         String error = null;
         if (updated != null) {

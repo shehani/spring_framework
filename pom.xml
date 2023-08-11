@@ -109,7 +109,17 @@
 			<artifactId>jackson-dataformat-xml</artifactId>
 		</dependency>
 
+		<!-- Adding Spring Data REST for enabling rest endpoints for all entities with repositories   -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-rest</artifactId>
+		</dependency>
 
+		<!-- Adding Spring Data Rest HAL Explorer for getting All Spring Data Rest provided APIs Contracts via Angular based UI -->
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-rest-hal-explorer</artifactId>
+		</dependency>
 	</dependencies>
 
 	<build>

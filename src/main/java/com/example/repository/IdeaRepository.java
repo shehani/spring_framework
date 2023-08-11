@@ -17,11 +17,11 @@ public interface IdeaRepository extends CrudRepository<Idea,Integer> {
     List<Idea> findByFirstName(String name); // Derived Query Method
     List<Idea> findByStatus(String status); // Derived Query Method
 
-    Page<Idea> findByStatus(String status , Pageable pageable);
+    //Page<Idea> findByStatus(String status , Pageable pageable);
 
     //below custom queries methods are implemented via @Query where custom queries are written under same repository class as below
-//    @Query(value = "select * from idea i where i.status = :status",nativeQuery = true)
-//    Page<Idea> findByStatus(String status , Pageable pageable);
+    @Query(value = "select * from idea i where i.status = :status",nativeQuery = true)
+    Page<Idea> findByStatusPagination(String status , Pageable pageable);
 
     @Transactional
     @Modifying
@@ -34,7 +34,7 @@ public interface IdeaRepository extends CrudRepository<Idea,Integer> {
 
 
    //below custom queries methods are implemented via @NamedQuery where custom queries are written under Idea Entity class
-    Page<Idea> findStatus(String status , Pageable pageable);
+    //Page<Idea> findStatus(String status , Pageable pageable);
 
     @Transactional
     @Modifying
