@@ -27,6 +27,8 @@ public class LoggerAspect {
 //        log.info(joinPoint.getSignature().toString() + "method execution ended");
 //    }
 
+
+
     @AfterThrowing(value = "execution(* com.example.*.*.*(..))", throwing = "ex")
     public void logException(JoinPoint joinPoint, Exception ex){
         log.error(joinPoint.getSignature().toString()+ "An exception happended due to "+ex.getMessage());

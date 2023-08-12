@@ -40,8 +40,6 @@ public class IdeaController {
         return "IdeaForm.html";
     }
 
-
-
     @RequestMapping(path="/postIdea",method = POST)
     public String saveIdea(@Valid @ModelAttribute("tellUs") Idea idea, Errors error){
         if(error.hasErrors()){
@@ -74,9 +72,17 @@ public class IdeaController {
         model.addAttribute("sortDir",sortDir);
         model.addAttribute("reverseSortDir",(sortDir.equals("asc")) ? "desc" : "asc");
         modelAndView.addObject("ideaList",ideaList);
+        logMes();
         return modelAndView;
     }
 
+    public void logMes(){
+        log.error("Error Log Test");
+        log.warn("Warn Log Test");
+        log.info("Info Log Test");
+        log.debug("Debug Log Test");
+        log.trace("Trace Log Test");
+    }
 
     @RequestMapping("/IdeaList/{name}")
     public ModelAndView displayIdea(Model model, @PathVariable String name){
