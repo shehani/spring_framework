@@ -1,22 +1,20 @@
 package com.example.service;
 
+import com.example.config.Props;
 import com.example.model.Idea;
 import com.example.repository.IdeaRepository;
 import com.example.util.Constant;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.annotation.RequestScope;
-
-import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
+
 
 
 @Service
@@ -26,6 +24,13 @@ public class IdeaService {
 
     @Autowired
     private IdeaRepository ideaRepository;
+
+//    @Value("${halpe-church.pageSize}") //setting value from application property file
+//    private int pageSize;
+
+    @Autowired
+    private Props props;
+
 
     public boolean isSaved(Idea idea){
         boolean isSaved = false;
@@ -41,7 +46,7 @@ public class IdeaService {
      * @return Idea List
      */
     public Page<Idea> getIdeasWithOpenStatus(int pageNum , String sortField, String sortDir){
-        int pageSize =2;
+        int pageSize = props.getPageSize();
         Pageable pageable = PageRequest.of(pageNum-1,pageSize,sortDir.equals("asc") ? Sort.by(sortField).ascending() : Sort.by(sortField).descending());
         Page<Idea> ideaPage = ideaRepository.findByStatusPagination(Constant.openStatus,pageable);
         return ideaPage;

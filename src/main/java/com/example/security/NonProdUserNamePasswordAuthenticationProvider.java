@@ -19,8 +19,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
-@Profile("prod") //create bean only when current active profile is prod
-public class UserNamePasswordAuthenticationProvider implements AuthenticationProvider {
+@Profile("!prod") //create bean only when current active profile is not prod
+public class NonProdUserNamePasswordAuthenticationProvider implements AuthenticationProvider {
 
     @Autowired
     PersonRepository personRepository;
@@ -33,7 +33,7 @@ public class UserNamePasswordAuthenticationProvider implements AuthenticationPro
         loginName = authentication.getName();
         password = authentication.getCredentials().toString();
         Person person = personRepository.findByEmail(loginName);
-        if(person != null && person.getPersonId()>0 && passwordEncoder.matches(password,person.getPassword())){
+        if(person != null && person.getPersonId()>0){
             return new UsernamePasswordAuthenticationToken(loginName,null,getGrantedAuthorities(person.getRole()));
         }else {
             throw new BadCredentialsException("Invalid credentials!");

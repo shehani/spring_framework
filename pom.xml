@@ -12,6 +12,7 @@
 	<artifactId>halpe-church</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>halpe-church</name>
+	<packaging>jar</packaging>
 	<description>Halpe Church Official Web Page</description>
 	<properties>
 		<java.version>19</java.version>
