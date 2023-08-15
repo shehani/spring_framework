@@ -15,13 +15,14 @@ public class SecurityConfig {
 
 
         http.
-                csrf().ignoringRequestMatchers("/postIdea").ignoringRequestMatchers("/public/**").ignoringRequestMatchers("/updateProfile").ignoringRequestMatchers("/admin/**").ignoringRequestMatchers("/api/**").ignoringRequestMatchers("/data-api/**").and().authorizeHttpRequests().
+                csrf().ignoringRequestMatchers("/postIdea").ignoringRequestMatchers("/public/**").ignoringRequestMatchers("/updateProfile").ignoringRequestMatchers("/admin/**").ignoringRequestMatchers("/api/**").ignoringRequestMatchers("/data-api/**").ignoringRequestMatchers("/main/actuator/**").and().authorizeHttpRequests().
                 requestMatchers("/public/**").permitAll().
                 requestMatchers("/home").authenticated().
                 requestMatchers("/IdeaList").hasRole("ADMIN").
                 requestMatchers("/IdeaList/**").hasRole("ADMIN").
                 requestMatchers("/CloseIdea/**").hasRole("ADMIN").
                 requestMatchers("/displayIdea/**").hasRole("ADMIN").
+                requestMatchers("/main/actuator/**").hasRole("ADMIN").
                 requestMatchers("/details").authenticated().
                 requestMatchers("/api/**").authenticated().
                 requestMatchers("/updateProfile").authenticated().
@@ -35,6 +36,7 @@ public class SecurityConfig {
                 requestMatchers("/admin/saveGrades").authenticated().
                 requestMatchers("/assets/**").permitAll().
                 requestMatchers("/schedule/**").permitAll().
+                //requestMatchers("/actuator/**").permitAll().
                 requestMatchers("/data-api/**").authenticated().
                 requestMatchers("/idea").permitAll().
                 requestMatchers("/postIdea").permitAll().
