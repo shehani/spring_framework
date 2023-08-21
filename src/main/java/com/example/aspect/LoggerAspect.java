@@ -15,20 +15,6 @@ import java.time.Instant;
 @Aspect
 @Component
 public class LoggerAspect {
-
-//    @Around("execution(* com.example.*.*(..)) && !within(com.example.aspect.*) && !within(com.example.model.*)")
-//    public void timeLogger(ProceedingJoinPoint joinPoint) throws Throwable{
-//        log.info(joinPoint.getSignature().toString() + "method execution started");
-//        Instant start = Instant.now();
-//        Object anyReturn = joinPoint.proceed();
-//        Instant end = Instant.now();
-//        long time = Duration.between(start,end).toMillis();
-//        log.info("Time tool for execution "+time);
-//        log.info(joinPoint.getSignature().toString() + "method execution ended");
-//    }
-
-
-
     @AfterThrowing(value = "execution(* com.example.*.*.*(..))", throwing = "ex")
     public void logException(JoinPoint joinPoint, Exception ex){
         log.error(joinPoint.getSignature().toString()+ "An exception happended due to "+ex.getMessage());
